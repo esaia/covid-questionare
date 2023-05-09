@@ -1,2 +1,2 @@
-export * from "./useGlobalVariables";
 export * from "./useMultiStepForm";
+export * from "./useContextVariables";

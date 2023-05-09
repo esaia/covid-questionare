@@ -1,13 +1,13 @@
 import React, { createContext } from "react";
-import useFormProvider from "./useFormProvider";
+import { useFormProvider } from "@/context";
 
 export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const { inputValues, currentPage } = useFormProvider();
+  const { inputValues, currentPage, setCurrentPage } = useFormProvider();
 
   return (
-    <FormContext.Provider value={{ inputValues, currentPage }}>
+    <FormContext.Provider value={{ inputValues, currentPage, setCurrentPage }}>
       {children}
     </FormContext.Provider>
   );

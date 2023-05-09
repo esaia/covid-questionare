@@ -1,13 +1,16 @@
-import { FormWrapper } from "@/components";
 import { useMultiStepForm } from "@/hooks";
+import { PersonalInformation, FormWrapper, Starter } from "@/components";
 
 function App() {
   const { step } = useMultiStepForm([
-    <div>first page</div>,
-    <FormWrapper imgURL="/images/one.png">პირადი ინფორმაცია</FormWrapper>,
+    <Starter />,
+    <FormWrapper>
+      <PersonalInformation />
+    </FormWrapper>,
+    <FormWrapper>second</FormWrapper>,
   ]);
 
-  return <>{step}</>;
+  return <div className="bg-[#EAEAEA] min-h-screen">{step}</div>;
 }
 
 export default App;
