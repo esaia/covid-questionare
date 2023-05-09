@@ -1,7 +1,5 @@
 import React from "react";
-import Redberry from "../icons/Redberry";
-import RightArrow from "../icons/RightArrow";
-import LeftArrow from "../icons/LeftArrow";
+import { RightArrow, LeftArrow, Redberry } from "@/components";
 
 const FormWrapper = ({ children, imgURL }) => {
   return (

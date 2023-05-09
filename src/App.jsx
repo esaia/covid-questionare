@@ -1,5 +1,5 @@
-import useMultiStepForm from "./hooks/useMultiStepForm";
-import { FormWrapper } from "./components";
+import { FormWrapper } from "@/components";
+import { useMultiStepForm } from "@/hooks";
 
 function App() {
   const { step } = useMultiStepForm([
