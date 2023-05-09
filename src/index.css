@@ -5,3 +5,7 @@
 * {
   font-family: "BPG Arial", sans-serif;
 }
+
+.input {
+  @apply px-3 py-2 border border-black outline-none bg-[#eaeaea] w-full;
+}

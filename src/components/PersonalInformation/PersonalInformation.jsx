@@ -1,26 +1,32 @@
 import React from "react";
 import { RightArrow, Input } from "@/components";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useContextVariables } from "@/hooks";
 
 const PersonalInformation = () => {
+  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
   const form = useForm({
-    defaultValues: { name: "", username: "", email: "safsdsfa@redberry.ge" },
+    defaultValues: {
+      name: inputValues?.name || "",
+      username: inputValues?.username || "",
+      email: inputValues?.email || "safsdsfa@redberry.ge",
+    },
   });
   const { handleSubmit, control, register } = form;
-  const { setCurrentPage } = useContextVariables();
+  const values = useWatch({ control });
 
   const submitForm = () => {
+    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev + 1);
   };
 
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(submitForm)}>
-        <div className="flex mt-3 justify-between ">
+        <div className="flex mt-3 justify-between min-h-[800px] ">
           <div className="flex-1 ">
-            <div action="" className="max-w-md w-full mt-10">
+            <div className="max-w-md w-full mt-10">
               <Input
                 name="name"
                 label="სახელი*"
@@ -79,7 +85,11 @@ const PersonalInformation = () => {
         </div>
 
         <div className="flex justify-center gap-20 w-full ">
-          <button className="cursor-pointer ">
+          <button className="w-20"></button>
+          <button
+            onClick={handleSubmit(submitForm)}
+            className="cursor-pointer w-20"
+          >
             <RightArrow />
           </button>
         </div>

@@ -1,5 +1,10 @@
 import { useMultiStepForm } from "@/hooks";
-import { PersonalInformation, FormWrapper, Starter } from "@/components";
+import {
+  PersonalInformation,
+  FormWrapper,
+  Starter,
+  CovidCondition,
+} from "@/components";
 
 function App() {
   const { step } = useMultiStepForm([
@@ -7,7 +12,12 @@ function App() {
     <FormWrapper>
       <PersonalInformation />
     </FormWrapper>,
-    <FormWrapper>second</FormWrapper>,
+    <FormWrapper>
+      <CovidCondition />
+    </FormWrapper>,
+    <FormWrapper>
+      <p>three</p>
+    </FormWrapper>,
   ]);
 
   return <div className="bg-[#EAEAEA] min-h-screen">{step}</div>;
