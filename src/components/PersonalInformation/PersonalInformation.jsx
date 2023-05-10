@@ -1,6 +1,6 @@
 import React from "react";
 import { RightArrow, Input } from "@/components";
-import { useForm, FormProvider, useWatch } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useContextVariables } from "@/hooks";
 
@@ -8,17 +8,19 @@ const PersonalInformation = () => {
   const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
-      name: inputValues?.name || "",
-      username: inputValues?.username || "",
+      name: inputValues?.name || null,
+      username: inputValues?.username || null,
       email: inputValues?.email || "safsdsfa@redberry.ge",
     },
   });
   const { handleSubmit, control, register } = form;
-  const values = useWatch({ control });
 
   const submitForm = () => {
-    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev + 1);
+  };
+
+  const changeInputValues = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
   };
 
   return (
@@ -39,6 +41,7 @@ const PersonalInformation = () => {
                       message:
                         "სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
                     },
+                    onChange: (e) => changeInputValues(e),
                   }),
                 }}
               />
@@ -53,6 +56,7 @@ const PersonalInformation = () => {
                       message:
                         "გვარის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
                     },
+                    onChange: changeInputValues,
                   }),
                 }}
               />
@@ -67,6 +71,7 @@ const PersonalInformation = () => {
                       message:
                         "გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)",
                     },
+                    onChange: changeInputValues,
                   }),
                 }}
               />

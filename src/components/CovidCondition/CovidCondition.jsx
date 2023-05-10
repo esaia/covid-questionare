@@ -1,6 +1,6 @@
 import React from "react";
 import { RightArrow, LeftArrow, RadioInput } from "@/components";
-import { useForm, FormProvider, useWatch } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useContextVariables } from "@/hooks";
 
@@ -10,22 +10,36 @@ const CovidCondition = () => {
     defaultValues: {
       isInfected: inputValues?.isInfected || null,
       isTested: inputValues?.isTested || null,
-      date: inputValues?.date || "",
+      date: inputValues?.date || null,
       antiVaccineCount: inputValues?.antiVaccineCount || null,
     },
   });
-  const { handleSubmit, control, register } = form;
-
-  const values = useWatch({ control });
+  const { handleSubmit, control, register, setValue } = form;
 
   const submitForm = () => {
-    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev + 1);
   };
 
   const back = () => {
-    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev - 1);
+  };
+
+  const changeFirstQuestion = (e) => {
+    setValue("isTested", "");
+    setValue("date", "");
+    setValue("antiVaccineCount", "");
+
+    setInputValues({
+      ...inputValues,
+      [e.target.name]: e.target.value,
+      isTested: null,
+      date: null,
+      antiVaccineCount: null,
+    });
+  };
+
+  const changeInputValues = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
   };
 
   return (
@@ -39,26 +53,35 @@ const CovidCondition = () => {
                 name="isInfected"
                 label="კი"
                 useFormAttributes={{
-                  ...register("isInfected", { required: true }),
+                  ...register("isInfected", {
+                    required: true,
+                    onChange: (e) => changeFirstQuestion(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="isInfected"
                 label="არა"
                 useFormAttributes={{
-                  ...register("isInfected", { required: true }),
+                  ...register("isInfected", {
+                    required: true,
+                    onChange: (e) => changeFirstQuestion(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="isInfected"
                 label="ახლა მაქვს"
                 useFormAttributes={{
-                  ...register("isInfected", { required: true }),
+                  ...register("isInfected", {
+                    required: true,
+                    onChange: (e) => changeFirstQuestion(e),
+                  }),
                 }}
               />
             </div>
 
-            {values?.isInfected === "კი" && (
+            {inputValues?.isInfected === "კი" && (
               <div className="max-w-md w-full mt-10">
                 <h2 className="font-bold">
                   ანტისხეულების ტესტი გაქვს გაკეთებული?*
@@ -67,20 +90,26 @@ const CovidCondition = () => {
                   name="isTested"
                   label="კი"
                   useFormAttributes={{
-                    ...register("isTested", { required: true }),
+                    ...register("isTested", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
                 <RadioInput
                   name="isTested"
                   label="არა"
                   useFormAttributes={{
-                    ...register("isTested", { required: true }),
+                    ...register("isTested", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
               </div>
             )}
 
-            {values?.isTested === "არა" && (
+            {inputValues?.isTested === "არა" && (
               <div className="max-w-md w-full mt-10">
                 <h2>
                   თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
@@ -98,13 +127,17 @@ const CovidCondition = () => {
                         /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{2}/,
                       message: "გთხოვთ ჩაწერეთ სწორი ფორმატით!",
                     },
+                    onChange: (e) => changeInputValues(e),
                   })}
                 />
                 <input
                   type="number"
                   className="input mt-5"
                   placeholder="ანტისხეულების რაოდენობა"
-                  {...register("antiVaccineCount", { required: true })}
+                  {...register("antiVaccineCount", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  })}
                 />
               </div>
             )}

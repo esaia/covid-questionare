@@ -1,6 +1,6 @@
 import React from "react";
 import { RightArrow, LeftArrow, RadioInput } from "@/components";
-import { useForm, FormProvider, useWatch } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useContextVariables } from "@/hooks";
 
@@ -8,34 +8,38 @@ const IsVaccinated = () => {
   const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
-      isVaccinated: inputValues?.isVaccinated || "",
-      WhatAreYouWaiting: inputValues?.WhatAreYouWaiting || "",
-      WhatStageIs: inputValues?.WhatStageIs || "",
+      isVaccinated: inputValues?.isVaccinated || null,
+      WhatAreYouWaiting: inputValues?.WhatAreYouWaiting || null,
+      WhatStageIs: inputValues?.WhatStageIs || null,
     },
   });
   const { handleSubmit, control, register, setValue } = form;
-  const values = useWatch({ control });
 
   const submitForm = () => {
-    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev + 1);
   };
 
   const back = () => {
-    setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev - 1);
   };
 
-  const resetFields = () => {
+  const resetFields = (e) => {
     setInputValues({
       ...inputValues,
-      WhatAreYouWaiting: "",
-      WhatStageIs: "",
+      [e.target.name]: e.target.value,
+      WhatStageIs: null,
+      WhatAreYouWaiting: null,
     });
+
     setValue("WhatStageIs", "");
     setValue("WhatAreYouWaiting", "");
   };
 
+  const changeInputValues = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  console.log(inputValues);
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(submitForm)}>
@@ -49,7 +53,7 @@ const IsVaccinated = () => {
                 useFormAttributes={{
                   ...register("isVaccinated", {
                     required: true,
-                    onChange: resetFields,
+                    onChange: (e) => resetFields(e),
                   }),
                 }}
               />
@@ -59,27 +63,33 @@ const IsVaccinated = () => {
                 useFormAttributes={{
                   ...register("isVaccinated", {
                     required: true,
-                    onChange: resetFields,
+                    onChange: (e) => resetFields(e),
                   }),
                 }}
               />
             </div>
 
-            {values?.isVaccinated === "კი" && (
+            {inputValues?.isVaccinated === "კი" && (
               <div className="max-w-xl w-full mt-10">
                 <h2 className="font-bold">აირჩიე რა ეტაპზე ხარ*</h2>
                 <RadioInput
                   name="WhatStageIs"
                   label="პირველი დოზა და დარეგისტრირებული ვარ მეორეზე"
                   useFormAttributes={{
-                    ...register("WhatStageIs", { required: true }),
+                    ...register("WhatStageIs", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
                 <RadioInput
                   name="WhatStageIs"
                   label="სრულად აცრილი ვარ"
                   useFormAttributes={{
-                    ...register("WhatStageIs", { required: true }),
+                    ...register("WhatStageIs", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
 
@@ -87,27 +97,36 @@ const IsVaccinated = () => {
                   name="WhatStageIs"
                   label="პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე"
                   useFormAttributes={{
-                    ...register("WhatStageIs", { required: true }),
+                    ...register("WhatStageIs", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
               </div>
             )}
 
-            {values?.isVaccinated === "არა" && (
+            {inputValues?.isVaccinated === "არა" && (
               <div className="max-w-xl w-full mt-10">
                 <h2 className="font-bold">რას ელოდები?*</h2>
                 <RadioInput
                   name="WhatAreYouWaiting"
                   label="დარეგისტრირებული ვარ და ველოდები რიცხვს"
                   useFormAttributes={{
-                    ...register("WhatAreYouWaiting", { required: true }),
+                    ...register("WhatAreYouWaiting", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
                 <RadioInput
                   name="WhatAreYouWaiting"
                   label="არ ვგეგმავ"
                   useFormAttributes={{
-                    ...register("WhatAreYouWaiting", { required: true }),
+                    ...register("WhatAreYouWaiting", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
 
@@ -115,15 +134,18 @@ const IsVaccinated = () => {
                   name="WhatAreYouWaiting"
                   label="გადატანილი მაქვს და ვგეგმავ აცრას"
                   useFormAttributes={{
-                    ...register("WhatAreYouWaiting", { required: true }),
+                    ...register("WhatAreYouWaiting", {
+                      required: true,
+                      onChange: (e) => changeInputValues(e),
+                    }),
                   }}
                 />
               </div>
             )}
 
-            {values?.WhatStageIs ===
+            {inputValues?.WhatStageIs ===
               "პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე" &&
-              values?.isVaccinated === "კი" && (
+              inputValues?.isVaccinated === "კი" && (
                 <div className="max-w-md w-52 mt-10 ml-6">
                   <p>
                     რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი{" "}
@@ -134,9 +156,9 @@ const IsVaccinated = () => {
                 </div>
               )}
 
-            {values?.WhatAreYouWaiting ===
+            {inputValues?.WhatAreYouWaiting ===
               "გადატანილი მაქვს და ვგეგმავ აცრას" &&
-              values?.isVaccinated === "არა" && (
+              inputValues?.isVaccinated === "არა" && (
                 <div className=" w-96 mt-10 ml-6">
                   <p className="mb-5">
                     ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ

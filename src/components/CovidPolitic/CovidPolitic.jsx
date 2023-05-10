@@ -8,10 +8,10 @@ const CovidPolitic = () => {
   const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
-      isInfected: inputValues?.isInfected || null,
-      isTested: inputValues?.isTested || null,
-      date: inputValues?.date || "",
-      antiVaccineCount: inputValues?.antiVaccineCount || null,
+      meetingFrequency: inputValues?.meetingFrequency || null,
+      remoteWorkDay: inputValues?.remoteWorkDay || null,
+      physicalMeetings: inputValues?.physicalMeetings || null,
+      whatWouldYouChange: inputValues?.whatWouldYouChange || null,
     },
   });
   const { handleSubmit, control, register } = form;
@@ -27,6 +27,12 @@ const CovidPolitic = () => {
     setInputValues({ ...inputValues, ...values });
     setCurrentPage((prev) => prev - 1);
   };
+
+  const changeInputValues = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  console.log(inputValues);
 
   return (
     <FormProvider {...form}>
@@ -53,28 +59,40 @@ const CovidPolitic = () => {
                 name="meetingFrequency"
                 label="კვირაში ორჯერ"
                 useFormAttributes={{
-                  ...register("meetingFrequency", { required: true }),
+                  ...register("meetingFrequency", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="კვირაში ერთხელ"
                 useFormAttributes={{
-                  ...register("meetingFrequency", { required: true }),
+                  ...register("meetingFrequency", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="ორ კვირაში ერთხელ"
                 useFormAttributes={{
-                  ...register("meetingFrequency", { required: true }),
+                  ...register("meetingFrequency", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="თვეში ერთხელ"
                 useFormAttributes={{
-                  ...register("meetingFrequency", { required: true }),
+                  ...register("meetingFrequency", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
             </div>
@@ -87,42 +105,60 @@ const CovidPolitic = () => {
                 name="remoteWorkDay"
                 label="0"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="1"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="2"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="3"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="4"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="5"
                 useFormAttributes={{
-                  ...register("remoteWorkDay", { required: true }),
+                  ...register("remoteWorkDay", {
+                    required: true,
+                    onChange: (e) => changeInputValues(e),
+                  }),
                 }}
               />
             </div>
@@ -130,7 +166,9 @@ const CovidPolitic = () => {
             <div className="max-w-md w-full mt-10">
               <h2 className="font-bold mb-3">რას ფიქრობ ფიზიკურ შეკრებებზე?</h2>
               <textarea
-                {...register("physicalMeetings")}
+                {...register("physicalMeetings", {
+                  onChange: (e) => changeInputValues(e),
+                })}
                 cols="56"
                 rows="5"
                 className="border border-black outline-none p-2"
@@ -143,7 +181,9 @@ const CovidPolitic = () => {
                 რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?
               </h2>
               <textarea
-                {...register("whatWouldYouChange")}
+                {...register("whatWouldYouChange", {
+                  onChange: (e) => changeInputValues(e),
+                })}
                 cols="56"
                 rows="5"
                 className="border border-black outline-none p-2"

@@ -1,10 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const [inputValues, setInputValues] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
+  const [inputValues, setInputValues] = useState(
+    JSON.parse(localStorage.getItem("inputValues")) || {}
+  );
+  const [currentPage, setCurrentPage] = useState(
+    +localStorage.getItem("currentPage") || 0
+  );
+
+  useEffect(() => {
+    localStorage.setItem("inputValues", JSON.stringify(inputValues));
+  }, [inputValues]);
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
 
   return (
     <FormContext.Provider
