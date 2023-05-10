@@ -4,7 +4,7 @@ export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
   const [inputValues, setInputValues] = useState({});
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <FormContext.Provider

@@ -5,6 +5,7 @@ import {
   Starter,
   CovidCondition,
   IsVaccinated,
+  CovidPolitic,
 } from "@/components";
 
 function App() {
@@ -19,7 +20,9 @@ function App() {
     <FormWrapper>
       <IsVaccinated />
     </FormWrapper>,
-    <FormWrapper>next</FormWrapper>,
+    <FormWrapper>
+      <CovidPolitic />
+    </FormWrapper>,
   ]);
 
   return <div className="bg-[#EAEAEA] min-h-screen">{step}</div>;

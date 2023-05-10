@@ -6,3 +6,4 @@ export * from "./Starter";
 export * from "./CovidCondition";
 export * from "./RadioInput";
 export * from "./IsVaccinated";
+export * from "./CovidPolitic";
