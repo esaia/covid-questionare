@@ -1,15 +1,17 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 const Input = ({
   name,
   label,
   placeholder = "",
   type = "text",
-  useFormAttributes,
+  registerOptions,
 }) => {
   const {
     formState: { errors },
+    register,
   } = useFormContext();
 
   return (
@@ -22,9 +24,17 @@ const Input = ({
         id={name}
         placeholder={placeholder}
         className="input"
-        {...useFormAttributes}
+        {...register(name, registerOptions)}
       />
-      <p className="text-sm text-red-500 ml-3">{errors?.[name]?.message}</p>
+      <div>
+        <ErrorMessage
+          errors={errors}
+          name={name}
+          render={({ message }) => (
+            <p className="text-sm text-red-500 ml-3">{message}</p>
+          )}
+        />
+      </div>
     </div>
   );
 };

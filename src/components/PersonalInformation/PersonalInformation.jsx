@@ -1,27 +1,12 @@
 import React from "react";
 import { RightArrow, Input } from "@/components";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useContextVariables } from "@/hooks";
+import usePersonalInformation from "./usePersonalInformation";
 
 const PersonalInformation = () => {
-  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
-  const form = useForm({
-    defaultValues: {
-      name: inputValues?.name || null,
-      username: inputValues?.username || null,
-      email: inputValues?.email || "safsdsfa@redberry.ge",
-    },
-  });
-  const { handleSubmit, control, register } = form;
-
-  const submitForm = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  const changeInputValues = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
-  };
+  const { form, handleSubmit, control, submitForm, changeInputValues } =
+    usePersonalInformation();
 
   return (
     <FormProvider {...form}>
@@ -33,46 +18,40 @@ const PersonalInformation = () => {
                 name="name"
                 label="სახელი*"
                 placeholder="იოსებ"
-                useFormAttributes={{
-                  ...register("name", {
-                    required: "ამ ველის შევსება სავალდებულოა",
-                    minLength: {
-                      value: 2,
-                      message:
-                        "სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
-                    },
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: "ამ ველის შევსება სავალდებულოა",
+                  minLength: {
+                    value: 2,
+                    message:
+                      "სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
+                  },
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <Input
                 name="username"
                 label="გვარი*"
-                useFormAttributes={{
-                  ...register("username", {
-                    required: "ამ ველის შევსება სავალდებულოა",
-                    minLength: {
-                      value: 2,
-                      message:
-                        "გვარის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
-                    },
-                    onChange: changeInputValues,
-                  }),
+                registerOptions={{
+                  required: "ამ ველის შევსება სავალდებულოა",
+                  minLength: {
+                    value: 2,
+                    message:
+                      "გვარის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
+                  },
+                  onChange: changeInputValues,
                 }}
               />
               <Input
                 name="email"
                 label="მეილი*"
-                useFormAttributes={{
-                  ...register("email", {
-                    required: "ამ ველის შევსება სავალდებულოა",
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@redberry\.ge$/,
-                      message:
-                        "გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)",
-                    },
-                    onChange: changeInputValues,
-                  }),
+                registerOptions={{
+                  required: "ამ ველის შევსება სავალდებულოა",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@redberry\.ge$/,
+                    message:
+                      "გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)",
+                  },
+                  onChange: changeInputValues,
                 }}
               />
             </div>
@@ -91,10 +70,7 @@ const PersonalInformation = () => {
 
         <div className="flex justify-center gap-20 w-full ">
           <button className="w-20"></button>
-          <button
-            onClick={handleSubmit(submitForm)}
-            className="cursor-pointer w-20"
-          >
+          <button type="submit" className="cursor-pointer w-20">
             <RightArrow />
           </button>
         </div>

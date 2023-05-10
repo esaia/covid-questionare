@@ -1,38 +1,19 @@
 import React from "react";
 import { LeftArrow, RadioInput } from "@/components";
-import { useForm, FormProvider, useWatch } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useContextVariables } from "@/hooks";
+import useCovidPolitic from "./useCovidPolitic";
 
 const CovidPolitic = () => {
-  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
-  const form = useForm({
-    defaultValues: {
-      meetingFrequency: inputValues?.meetingFrequency || null,
-      remoteWorkDay: inputValues?.remoteWorkDay || null,
-      physicalMeetings: inputValues?.physicalMeetings || null,
-      whatWouldYouChange: inputValues?.whatWouldYouChange || null,
-    },
-  });
-  const { handleSubmit, control, register } = form;
-
-  const values = useWatch({ control });
-
-  const submitForm = () => {
-    setInputValues({ ...inputValues, ...values });
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  const back = () => {
-    setInputValues({ ...inputValues, ...values });
-    setCurrentPage((prev) => prev - 1);
-  };
-
-  const changeInputValues = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
-  };
-
-  console.log(inputValues);
+  const {
+    form,
+    handleSubmit,
+    control,
+    register,
+    submitForm,
+    back,
+    changeInputValues,
+  } = useCovidPolitic();
 
   return (
     <FormProvider {...form}>
@@ -58,41 +39,33 @@ const CovidPolitic = () => {
               <RadioInput
                 name="meetingFrequency"
                 label="კვირაში ორჯერ"
-                useFormAttributes={{
-                  ...register("meetingFrequency", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="კვირაში ერთხელ"
-                useFormAttributes={{
-                  ...register("meetingFrequency", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="ორ კვირაში ერთხელ"
-                useFormAttributes={{
-                  ...register("meetingFrequency", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="meetingFrequency"
                 label="თვეში ერთხელ"
-                useFormAttributes={{
-                  ...register("meetingFrequency", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
             </div>
@@ -104,61 +77,49 @@ const CovidPolitic = () => {
               <RadioInput
                 name="remoteWorkDay"
                 label="0"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="1"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="2"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="3"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="4"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
                 name="remoteWorkDay"
                 label="5"
-                useFormAttributes={{
-                  ...register("remoteWorkDay", {
-                    required: true,
-                    onChange: (e) => changeInputValues(e),
-                  }),
+                registerOptions={{
+                  required: true,
+                  onChange: (e) => changeInputValues(e),
                 }}
               />
             </div>

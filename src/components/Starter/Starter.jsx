@@ -1,14 +1,9 @@
 import React from "react";
 import { Logo } from "@/components";
-import { useContextVariables } from "@/hooks";
+import useStarter from "./useStarter";
 
 const Starter = () => {
-  const { setCurrentPage } = useContextVariables();
-
-  const changePage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-
+  const { changePage } = useStarter();
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-20 ">
       <Logo className="w-40" />
