@@ -16,12 +16,27 @@ const useCovidPolitic = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    setCurrentPage((prev) => prev + 1);
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
-    localStorage.setItem("currentPage", currentPage + 1);
+
+    try {
+      const postData = async () => {
+        await fetch("https://covid19.devtest.ge/api/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...inputValues, ...data }),
+        });
+      };
+      postData();
+      setCurrentPage((prev) => prev + 1);
+      localStorage.setItem("currentPage", currentPage + 1);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const back = () => {

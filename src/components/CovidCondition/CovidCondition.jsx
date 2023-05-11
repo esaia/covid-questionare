@@ -89,11 +89,6 @@ const CovidCondition = () => {
                   className="mb-2"
                   registerOptions={{
                     required: true,
-                    pattern: {
-                      value:
-                        /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{2}/,
-                      message: "გთხოვთ ჩაწერეთ სწორი ფორმატით!",
-                    },
                   }}
                 />
 
@@ -121,11 +116,6 @@ const CovidCondition = () => {
                   placeholder="დდ/თთ/წწ"
                   registerOptions={{
                     required: true,
-                    pattern: {
-                      value:
-                        /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{2}/,
-                      message: "გთხოვთ ჩაწერეთ სწორი ფორმატით!",
-                    },
                   }}
                 />
               </div>
