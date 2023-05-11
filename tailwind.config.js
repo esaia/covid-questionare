@@ -6,6 +6,10 @@ export default {
         2: "2 2 0%",
       },
     },
+
+    fontFamily: {
+      Helvetica: "Helvetica",
+    },
   },
   plugins: [],
 };

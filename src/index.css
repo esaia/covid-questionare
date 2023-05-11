@@ -9,3 +9,10 @@
 .input {
   @apply px-3 py-2 border border-black outline-none bg-[#eaeaea] w-full;
 }
+
+@layer base {
+  @font-face {
+    font-family: "Helvetica";
+    src: url("/public/fonts/Linotype-HelveticaNeueLTGEO75Bold.ttf");
+  }
+}

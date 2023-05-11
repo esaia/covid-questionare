@@ -65,7 +65,8 @@ const PersonalInformation = () => {
         </div>
 
         <div className="flex justify-center gap-20 w-full ">
-          <button className="w-20"></button>
+          <div className="w-20"></div>
+
           <button type="submit" className="cursor-pointer w-20">
             <RightArrow />
           </button>

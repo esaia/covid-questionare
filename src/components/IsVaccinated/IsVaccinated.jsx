@@ -23,7 +23,7 @@ const IsVaccinated = () => {
         <div className="flex mt-3 justify-between  min-h-[800px] ">
           <div className="flex-1 ">
             <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold">უკვე აცრილი ხარ?*</h2>
+              <h2 className="font-bold font-Helvetica">უკვე აცრილი ხარ?*</h2>
               <RadioInput
                 name="isVaccinated"
                 label="კი"
@@ -43,7 +43,9 @@ const IsVaccinated = () => {
             </div>
             {isVaccinated === "კი" && (
               <div className="max-w-xl w-full mt-10">
-                <h2 className="font-bold">აირჩიე რა ეტაპზე ხარ*</h2>
+                <h2 className="font-bold font-Helvetica">
+                  აირჩიე რა ეტაპზე ხარ*
+                </h2>
                 <RadioInput
                   name="WhatStageIs"
                   label="პირველი დოზა და დარეგისტრირებული ვარ მეორეზე"
@@ -70,7 +72,7 @@ const IsVaccinated = () => {
             )}
             {isVaccinated === "არა" && (
               <div className="max-w-xl w-full mt-10">
-                <h2 className="font-bold">რას ელოდები?*</h2>
+                <h2 className="font-bold font-Helvetica">რას ელოდები?*</h2>
                 <RadioInput
                   name="WhatAreYouWaiting"
                   label="დარეგისტრირებული ვარ და ველოდები რიცხვს"

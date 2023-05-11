@@ -5,7 +5,7 @@ const RadioInput = ({ name, label, registerOptions }) => {
   const { register } = useFormContext();
 
   return (
-    <div className="flex justify-start items-center gap-2 mt-2">
+    <div className="flex justify-start items-center gap-2 mt-2 ml-2">
       <input
         type="radio"
         name={name}

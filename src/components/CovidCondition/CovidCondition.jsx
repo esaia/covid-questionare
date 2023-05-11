@@ -23,7 +23,9 @@ const CovidCondition = () => {
         <div className="flex mt-3 justify-between  min-h-[800px] ">
           <div className="flex-1 ">
             <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold">გაქვს გადატანილი Covid-19?*</h2>
+              <h2 className="font-bold font-Helvetica">
+                გაქვს გადატანილი Covid-19?*
+              </h2>
               <RadioInput
                 name="isInfected"
                 label="კი"
@@ -52,7 +54,7 @@ const CovidCondition = () => {
 
             {isInfected === "კი" && (
               <div className="max-w-md w-full mt-10">
-                <h2 className="font-bold">
+                <h2 className="font-bold font-Helvetica">
                   ანტისხეულების ტესტი გაქვს გაკეთებული?*
                 </h2>
                 <RadioInput
@@ -75,7 +77,7 @@ const CovidCondition = () => {
             )}
             {isTested === "კი" && (
               <div className="max-w-md w-full mt-10">
-                <h2>
+                <h2 className="font-Helvetica mb-3">
                   თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
                   ანტისხეულების რაოდენობა*
                 </h2>
@@ -83,7 +85,8 @@ const CovidCondition = () => {
                 <Input
                   name="dateOfTest"
                   placeholder="რიცხვი"
-                  className="mb-1"
+                  type="date"
+                  className="mb-2"
                   registerOptions={{
                     required: true,
                     pattern: {
@@ -107,15 +110,15 @@ const CovidCondition = () => {
 
             {isTested === "არა" && (
               <div className="max-w-md w-full mt-10">
-                <h2>
+                <h2 className="font-Helvetica mb-3">
                   მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
                   Covid-19*
                 </h2>
 
                 <Input
                   name="dateOfCovid"
-                  placeholder="რიცხვი"
-                  className="mb-1"
+                  type="date"
+                  placeholder="დდ/თთ/წწ"
                   registerOptions={{
                     required: true,
                     pattern: {
