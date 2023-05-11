@@ -7,3 +7,4 @@ export * from "./CovidCondition";
 export * from "./RadioInput";
 export * from "./IsVaccinated";
 export * from "./CovidPolitic";
+export * from "./ThankYouPage";
