@@ -1,9 +1,7 @@
-import useGlobalVariables from "./useGlobalVariables";
+import { useContextVariables } from "@/hooks";
 
-const useMultiStepForm = (step) => {
-  const { currentPage } = useGlobalVariables();
+export const useMultiStepForm = (step) => {
+  const { currentPage } = useContextVariables();
 
-  return { step: step[currentPage], allSteps: step.length };
+  return { step: step[+currentPage], allSteps: step.length };
 };
-
-export default useMultiStepForm;
