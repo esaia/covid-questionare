@@ -2,22 +2,26 @@ import { useForm } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
 
 const usePersonalInformation = () => {
-  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
+  const { currentPage, setCurrentPage, inputValues, setInputValues } =
+    useContextVariables();
   const form = useForm({
     defaultValues: {
       name: inputValues?.name || null,
       username: inputValues?.username || null,
-      email: inputValues?.email || "ninas.imedia.moewoneba@redberry.ge",
+      email: inputValues?.email || null,
     },
   });
   const { handleSubmit, control } = form;
 
-  const submitForm = () => {
+  const submitForm = (data) => {
+    setInputValues({ ...inputValues, ...data });
     setCurrentPage((prev) => prev + 1);
-  };
 
-  const changeInputValues = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+    localStorage.setItem(
+      "inputValues",
+      JSON.stringify({ ...inputValues, ...data })
+    );
+    localStorage.setItem("currentPage", currentPage + 1);
   };
 
   return {
@@ -28,7 +32,6 @@ const usePersonalInformation = () => {
     handleSubmit,
     control,
     submitForm,
-    changeInputValues,
   };
 };
 

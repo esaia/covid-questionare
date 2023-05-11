@@ -8,6 +8,7 @@ const Input = ({
   placeholder = "",
   type = "text",
   registerOptions,
+  className,
 }) => {
   const {
     formState: { errors },
@@ -15,7 +16,11 @@ const Input = ({
   } = useFormContext();
 
   return (
-    <div className="flex flex-col gap-2 mb-6 justify-start items-start ">
+    <div
+      className={
+        "flex flex-col gap-2 mb-6 justify-start items-start " + className
+      }
+    >
       <label htmlFor={name} className="font-bold">
         {label}
       </label>

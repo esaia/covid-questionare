@@ -1,5 +1,5 @@
 import React from "react";
-import { RightArrow, LeftArrow, RadioInput } from "@/components";
+import { RightArrow, LeftArrow, RadioInput, Input } from "@/components";
 import { FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import useCovidCondition from "./useCovidCondition";
@@ -11,10 +11,10 @@ const CovidCondition = () => {
     control,
     submitForm,
     back,
-    changeFirstQuestion,
-    changeInputValues,
-    register,
-    values,
+    resetFields,
+    resetLastFields,
+    isInfected,
+    isTested,
   } = useCovidCondition();
 
   return (
@@ -29,7 +29,7 @@ const CovidCondition = () => {
                 label="კი"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeFirstQuestion(e),
+                  onChange: (e) => resetFields(e),
                 }}
               />
               <RadioInput
@@ -37,7 +37,7 @@ const CovidCondition = () => {
                 label="არა"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeFirstQuestion(e),
+                  onChange: (e) => resetFields(e),
                 }}
               />
               <RadioInput
@@ -45,12 +45,12 @@ const CovidCondition = () => {
                 label="ახლა მაქვს"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeFirstQuestion(e),
+                  onChange: (e) => resetFields(e),
                 }}
               />
             </div>
 
-            {values?.isInfected === "კი" && (
+            {isInfected === "კი" && (
               <div className="max-w-md w-full mt-10">
                 <h2 className="font-bold">
                   ანტისხეულების ტესტი გაქვს გაკეთებული?*
@@ -60,7 +60,7 @@ const CovidCondition = () => {
                   label="კი"
                   registerOptions={{
                     required: true,
-                    onChange: (e) => changeInputValues(e),
+                    onChange: (e) => resetLastFields(e),
                   }}
                 />
                 <RadioInput
@@ -68,41 +68,62 @@ const CovidCondition = () => {
                   label="არა"
                   registerOptions={{
                     required: true,
-                    onChange: (e) => changeInputValues(e),
+                    onChange: (e) => resetLastFields(e),
                   }}
                 />
               </div>
             )}
-
-            {values?.isTested === "არა" && (
+            {isTested === "კი" && (
               <div className="max-w-md w-full mt-10">
                 <h2>
                   თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
                   ანტისხეულების რაოდენობა*
                 </h2>
 
-                <input
-                  type="text"
-                  className="input mt-5"
+                <Input
+                  name="dateOfTest"
                   placeholder="რიცხვი"
-                  {...register("date", {
+                  className="mb-1"
+                  registerOptions={{
                     required: true,
                     pattern: {
                       value:
                         /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{2}/,
                       message: "გთხოვთ ჩაწერეთ სწორი ფორმატით!",
                     },
-                    onChange: (e) => changeInputValues(e),
-                  })}
+                  }}
                 />
-                <input
+
+                <Input
+                  name="antiVaccineCount"
                   type="number"
-                  className="input mt-5"
                   placeholder="ანტისხეულების რაოდენობა"
-                  {...register("antiVaccineCount", {
+                  registerOptions={{
                     required: true,
-                    onChange: (e) => changeInputValues(e),
-                  })}
+                  }}
+                />
+              </div>
+            )}
+
+            {isTested === "არა" && (
+              <div className="max-w-md w-full mt-10">
+                <h2>
+                  მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
+                  Covid-19*
+                </h2>
+
+                <Input
+                  name="dateOfCovid"
+                  placeholder="რიცხვი"
+                  className="mb-1"
+                  registerOptions={{
+                    required: true,
+                    pattern: {
+                      value:
+                        /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{2}/,
+                      message: "გთხოვთ ჩაწერეთ სწორი ფორმატით!",
+                    },
+                  }}
                 />
               </div>
             )}

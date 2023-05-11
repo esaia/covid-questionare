@@ -5,15 +5,8 @@ import { DevTool } from "@hookform/devtools";
 import useCovidPolitic from "./useCovidPolitic";
 
 const CovidPolitic = () => {
-  const {
-    form,
-    handleSubmit,
-    control,
-    register,
-    submitForm,
-    back,
-    changeInputValues,
-  } = useCovidPolitic();
+  const { form, handleSubmit, control, register, submitForm, back } =
+    useCovidPolitic();
 
   return (
     <FormProvider {...form}>
@@ -41,7 +34,6 @@ const CovidPolitic = () => {
                 label="კვირაში ორჯერ"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -49,7 +41,6 @@ const CovidPolitic = () => {
                 label="კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -57,7 +48,6 @@ const CovidPolitic = () => {
                 label="ორ კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -65,7 +55,6 @@ const CovidPolitic = () => {
                 label="თვეში ერთხელ"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
             </div>
@@ -79,7 +68,6 @@ const CovidPolitic = () => {
                 label="0"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -87,7 +75,6 @@ const CovidPolitic = () => {
                 label="1"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -95,7 +82,6 @@ const CovidPolitic = () => {
                 label="2"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -103,7 +89,6 @@ const CovidPolitic = () => {
                 label="3"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -111,7 +96,6 @@ const CovidPolitic = () => {
                 label="4"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <RadioInput
@@ -119,7 +103,6 @@ const CovidPolitic = () => {
                 label="5"
                 registerOptions={{
                   required: true,
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
             </div>
@@ -127,9 +110,7 @@ const CovidPolitic = () => {
             <div className="max-w-md w-full mt-10">
               <h2 className="font-bold mb-3">რას ფიქრობ ფიზიკურ შეკრებებზე?</h2>
               <textarea
-                {...register("physicalMeetings", {
-                  onChange: (e) => changeInputValues(e),
-                })}
+                {...register("physicalMeetings")}
                 cols="56"
                 rows="5"
                 className="border border-black outline-none p-2"
@@ -142,16 +123,17 @@ const CovidPolitic = () => {
                 რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?
               </h2>
               <textarea
-                {...register("whatWouldYouChange", {
-                  onChange: (e) => changeInputValues(e),
-                })}
+                {...register("whatWouldYouChange")}
                 cols="56"
                 rows="5"
                 className="border border-black outline-none p-2"
               ></textarea>
             </div>
             <div className="w-full  flex justify-end items-center mt-4">
-              <button className="font-bold px-5 py-2 text-white rounded-3xl bg-[#208298] ">
+              <button
+                type="submit"
+                className="font-bold px-5 py-2 text-white rounded-3xl bg-[#208298] "
+              >
                 დასრულება
               </button>
             </div>

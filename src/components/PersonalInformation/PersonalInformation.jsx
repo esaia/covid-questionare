@@ -5,8 +5,7 @@ import { DevTool } from "@hookform/devtools";
 import usePersonalInformation from "./usePersonalInformation";
 
 const PersonalInformation = () => {
-  const { form, handleSubmit, control, submitForm, changeInputValues } =
-    usePersonalInformation();
+  const { form, handleSubmit, control, submitForm } = usePersonalInformation();
 
   return (
     <FormProvider {...form}>
@@ -25,7 +24,6 @@ const PersonalInformation = () => {
                     message:
                       "სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
                   },
-                  onChange: (e) => changeInputValues(e),
                 }}
               />
               <Input
@@ -38,7 +36,6 @@ const PersonalInformation = () => {
                     message:
                       "გვარის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან",
                   },
-                  onChange: changeInputValues,
                 }}
               />
               <Input
@@ -51,7 +48,6 @@ const PersonalInformation = () => {
                     message:
                       "გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)",
                   },
-                  onChange: changeInputValues,
                 }}
               />
             </div>

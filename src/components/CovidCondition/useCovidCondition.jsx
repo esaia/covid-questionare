@@ -2,42 +2,50 @@ import { useForm, useWatch } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
 
 const useCovidCondition = () => {
-  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
+  const { currentPage, setCurrentPage, inputValues, setInputValues } =
+    useContextVariables();
   const form = useForm({
     defaultValues: {
       isInfected: inputValues?.isInfected || null,
       isTested: inputValues?.isTested || null,
-      date: inputValues?.date || null,
+      dateOfTest: inputValues?.dateOfTest || null,
+      dateOfCovid: inputValues?.dateOfCovid || null,
       antiVaccineCount: inputValues?.antiVaccineCount || null,
     },
   });
 
   const { handleSubmit, control, register, setValue } = form;
-  const values = useWatch({ control });
-  const submitForm = () => {
+  const [isInfected, isTested] = useWatch({
+    control,
+    name: ["isInfected", "isTested"],
+  });
+
+  const submitForm = (data) => {
+    setInputValues({ ...inputValues, ...data });
     setCurrentPage((prev) => prev + 1);
+    localStorage.setItem(
+      "inputValues",
+      JSON.stringify({ ...inputValues, ...data })
+    );
+    localStorage.setItem("currentPage", currentPage + 1);
   };
 
   const back = () => {
     setCurrentPage((prev) => prev - 1);
+    localStorage.setItem("currentPage", currentPage - 1);
   };
 
-  const changeFirstQuestion = (e) => {
-    setValue("isTested", "");
-    setValue("date", "");
-    setValue("antiVaccineCount", "");
-
-    setInputValues({
-      ...inputValues,
-      [e.target.name]: e.target.value,
-      isTested: null,
-      date: null,
-      antiVaccineCount: null,
-    });
+  const resetFields = () => {
+    setValue("isTested", null);
+    setValue("dateOfTest", null);
+    setValue("dateOfCovid", null);
+    setValue("antiVaccineCount", null);
   };
 
-  const changeInputValues = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  const resetLastFields = () => {
+    setValue("dateOfTest", null);
+    setValue("dateOfCovid", null);
+    setValue("antiVaccineCount", null);
   };
 
   return {
@@ -50,10 +58,11 @@ const useCovidCondition = () => {
     setInputValues,
     submitForm,
     back,
-    changeFirstQuestion,
-    changeInputValues,
+    resetFields,
+    resetLastFields,
     register,
-    values,
+    isInfected,
+    isTested,
   };
 };
 

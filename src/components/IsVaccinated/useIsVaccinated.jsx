@@ -2,7 +2,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
 
 const useIsVaccinated = () => {
-  const { setCurrentPage, inputValues, setInputValues } = useContextVariables();
+  const { currentPage, setCurrentPage, inputValues, setInputValues } =
+    useContextVariables();
   const form = useForm({
     defaultValues: {
       isVaccinated: inputValues?.isVaccinated || null,
@@ -12,30 +13,29 @@ const useIsVaccinated = () => {
   });
   const { handleSubmit, control, register, setValue } = form;
 
-  const values = useWatch({ control });
+  const [isVaccinated, WhatStageIs, WhatAreYouWaiting] = useWatch({
+    control,
+    name: ["isVaccinated", "WhatStageIs", "WhatAreYouWaiting"],
+  });
 
-  const submitForm = () => {
+  const submitForm = (data) => {
+    setInputValues({ ...inputValues, ...data });
     setCurrentPage((prev) => prev + 1);
+    localStorage.setItem(
+      "inputValues",
+      JSON.stringify({ ...inputValues, ...data })
+    );
+    localStorage.setItem("currentPage", currentPage + 1);
   };
 
   const back = () => {
     setCurrentPage((prev) => prev - 1);
+    localStorage.setItem("currentPage", currentPage - 1);
   };
 
   const resetFields = (e) => {
-    setInputValues({
-      ...inputValues,
-      [e.target.name]: e.target.value,
-      WhatStageIs: null,
-      WhatAreYouWaiting: null,
-    });
-
-    setValue("WhatStageIs", "");
-    setValue("WhatAreYouWaiting", "");
-  };
-
-  const changeInputValues = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+    setValue("WhatStageIs", null);
+    setValue("WhatAreYouWaiting", null);
   };
 
   return {
@@ -46,12 +46,13 @@ const useIsVaccinated = () => {
     submitForm,
     back,
     resetFields,
-    changeInputValues,
     handleSubmit,
     control,
     register,
     setValue,
-    values,
+    isVaccinated,
+    WhatStageIs,
+    WhatAreYouWaiting,
   };
 };
 
