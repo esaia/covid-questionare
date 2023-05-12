@@ -11,8 +11,8 @@ const useCovidPolitic = () => {
         inputValues?.number_of_days_from_office || null,
       what_about_meetings_in_live:
         inputValues?.what_about_meetings_in_live || null,
-      what_about_meetings_in_live:
-        inputValues?.what_about_meetings_in_live || null,
+      tell_us_your_opinion_about_us:
+        inputValues?.tell_us_your_opinion_about_us || null,
     },
   });
   const { handleSubmit, control, register } = form;
@@ -26,7 +26,7 @@ const useCovidPolitic = () => {
 
     try {
       const postData = async () => {
-        await fetch("https://covid19.devtest.ge/api/create", {
+        await fetch(import.meta.env.VITE_API_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const useCovidPolitic = () => {
       setCurrentPage((prev) => prev + 1);
       localStorage.setItem("currentPage", currentPage + 1);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

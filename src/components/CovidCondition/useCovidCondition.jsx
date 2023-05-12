@@ -60,7 +60,6 @@ const useCovidCondition = () => {
     back,
     resetFields,
     resetLastFields,
-    register,
     had_covid,
     had_antibody_test,
   };
