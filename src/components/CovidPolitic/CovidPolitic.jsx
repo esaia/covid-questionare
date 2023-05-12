@@ -33,28 +33,28 @@ const CovidPolitic = () => {
                 შეხვედრები, სადაც ყველა სურვილისამებრ ჩაერთვება?*
               </h2>
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="კვირაში ორჯერ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="ორ კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="თვეში ერთხელ"
                 registerOptions={{
                   required: true,
@@ -67,42 +67,42 @@ const CovidPolitic = () => {
                 კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*
               </h2>
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="0"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="1"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="2"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="3"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="4"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="5"
                 registerOptions={{
                   required: true,
@@ -115,7 +115,7 @@ const CovidPolitic = () => {
                 რას ფიქრობ ფიზიკურ შეკრებებზე?
               </h2>
               <textarea
-                {...register("physicalMeetings")}
+                {...register("what_about_meetings_in_live")}
                 rows="5"
                 className="border border-black outline-none p-2 w-full"
               ></textarea>
@@ -129,7 +129,7 @@ const CovidPolitic = () => {
                 რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?
               </h2>
               <textarea
-                {...register("whatWouldYouChange")}
+                {...register("tell_us_your_opinion_about_us")}
                 rows="5"
                 className="border border-black outline-none p-2 w-full"
               ></textarea>

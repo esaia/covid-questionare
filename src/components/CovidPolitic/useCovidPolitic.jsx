@@ -6,10 +6,13 @@ const useCovidPolitic = () => {
     useContextVariables();
   const form = useForm({
     defaultValues: {
-      meetingFrequency: inputValues?.meetingFrequency || null,
-      remoteWorkDay: inputValues?.remoteWorkDay || null,
-      physicalMeetings: inputValues?.physicalMeetings || null,
-      whatWouldYouChange: inputValues?.whatWouldYouChange || null,
+      non_formal_meetings: inputValues?.non_formal_meetings || null,
+      number_of_days_from_office:
+        inputValues?.number_of_days_from_office || null,
+      what_about_meetings_in_live:
+        inputValues?.what_about_meetings_in_live || null,
+      what_about_meetings_in_live:
+        inputValues?.what_about_meetings_in_live || null,
     },
   });
   const { handleSubmit, control, register } = form;

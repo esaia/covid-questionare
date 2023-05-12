@@ -13,8 +13,8 @@ const CovidCondition = () => {
     back,
     resetFields,
     resetLastFields,
-    isInfected,
-    isTested,
+    had_covid,
+    had_antibody_test,
   } = useCovidCondition();
 
   return (
@@ -27,7 +27,7 @@ const CovidCondition = () => {
                 გაქვს გადატანილი Covid-19?*
               </h2>
               <RadioInput
-                name="isInfected"
+                name="had_covid"
                 label="კი"
                 registerOptions={{
                   required: true,
@@ -35,7 +35,7 @@ const CovidCondition = () => {
                 }}
               />
               <RadioInput
-                name="isInfected"
+                name="had_covid"
                 label="არა"
                 registerOptions={{
                   required: true,
@@ -43,7 +43,7 @@ const CovidCondition = () => {
                 }}
               />
               <RadioInput
-                name="isInfected"
+                name="had_covid"
                 label="ახლა მაქვს"
                 registerOptions={{
                   required: true,
@@ -52,13 +52,13 @@ const CovidCondition = () => {
               />
             </div>
 
-            {isInfected === "კი" && (
+            {had_covid === "კი" && (
               <div className="max-w-md w-full mt-10">
                 <h2 className="font-bold font-Helvetica">
                   ანტისხეულების ტესტი გაქვს გაკეთებული?*
                 </h2>
                 <RadioInput
-                  name="isTested"
+                  name="had_antibody_test"
                   label="კი"
                   registerOptions={{
                     required: true,
@@ -66,7 +66,7 @@ const CovidCondition = () => {
                   }}
                 />
                 <RadioInput
-                  name="isTested"
+                  name="had_antibody_test"
                   label="არა"
                   registerOptions={{
                     required: true,
@@ -75,7 +75,7 @@ const CovidCondition = () => {
                 />
               </div>
             )}
-            {isTested === "კი" && (
+            {had_antibody_test === "კი" && (
               <div className="max-w-md w-full mt-10">
                 <h2 className="font-Helvetica mb-3">
                   თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
@@ -83,7 +83,7 @@ const CovidCondition = () => {
                 </h2>
 
                 <Input
-                  name="dateOfTest"
+                  name="test_date"
                   placeholder="რიცხვი"
                   type="date"
                   className="mb-2"
@@ -93,7 +93,7 @@ const CovidCondition = () => {
                 />
 
                 <Input
-                  name="antiVaccineCount"
+                  name="number"
                   type="number"
                   placeholder="ანტისხეულების რაოდენობა"
                   registerOptions={{
@@ -103,7 +103,7 @@ const CovidCondition = () => {
               </div>
             )}
 
-            {isTested === "არა" && (
+            {had_antibody_test === "არა" && (
               <div className="max-w-md w-full mt-10">
                 <h2 className="font-Helvetica mb-3">
                   მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
@@ -111,7 +111,7 @@ const CovidCondition = () => {
                 </h2>
 
                 <Input
-                  name="dateOfCovid"
+                  name="covid_sickness_date"
                   type="date"
                   placeholder="დდ/თთ/წწ"
                   registerOptions={{

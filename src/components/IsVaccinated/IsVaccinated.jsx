@@ -12,9 +12,9 @@ const IsVaccinated = () => {
     resetFields,
     handleSubmit,
     control,
-    isVaccinated,
-    WhatStageIs,
-    WhatAreYouWaiting,
+    had_vaccine,
+    vaccination_stage,
+    i_am_waiting,
   } = useIsVaccinated();
 
   return (
@@ -25,7 +25,7 @@ const IsVaccinated = () => {
             <div className="max-w-md w-full mt-10">
               <h2 className="font-bold font-Helvetica">უკვე აცრილი ხარ?*</h2>
               <RadioInput
-                name="isVaccinated"
+                name="had_vaccine"
                 label="კი"
                 registerOptions={{
                   required: true,
@@ -33,7 +33,7 @@ const IsVaccinated = () => {
                 }}
               />
               <RadioInput
-                name="isVaccinated"
+                name="had_vaccine"
                 label="არა"
                 registerOptions={{
                   required: true,
@@ -41,20 +41,20 @@ const IsVaccinated = () => {
                 }}
               />
             </div>
-            {isVaccinated === "კი" && (
+            {had_vaccine === "კი" && (
               <div className="max-w-xl w-full mt-10">
                 <h2 className="font-bold font-Helvetica">
                   აირჩიე რა ეტაპზე ხარ*
                 </h2>
                 <RadioInput
-                  name="WhatStageIs"
+                  name="vaccination_stage"
                   label="პირველი დოზა და დარეგისტრირებული ვარ მეორეზე"
                   registerOptions={{
                     required: true,
                   }}
                 />
                 <RadioInput
-                  name="WhatStageIs"
+                  name="vaccination_stage"
                   label="სრულად აცრილი ვარ"
                   registerOptions={{
                     required: true,
@@ -62,7 +62,7 @@ const IsVaccinated = () => {
                 />
 
                 <RadioInput
-                  name="WhatStageIs"
+                  name="vaccination_stage"
                   label="პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე"
                   registerOptions={{
                     required: true,
@@ -70,18 +70,18 @@ const IsVaccinated = () => {
                 />
               </div>
             )}
-            {isVaccinated === "არა" && (
+            {had_vaccine === "არა" && (
               <div className="max-w-xl w-full mt-10">
                 <h2 className="font-bold font-Helvetica">რას ელოდები?*</h2>
                 <RadioInput
-                  name="WhatAreYouWaiting"
+                  name="i_am_waiting"
                   label="დარეგისტრირებული ვარ და ველოდები რიცხვს"
                   registerOptions={{
                     required: true,
                   }}
                 />
                 <RadioInput
-                  name="WhatAreYouWaiting"
+                  name="i_am_waiting"
                   label="არ ვგეგმავ"
                   registerOptions={{
                     required: true,
@@ -89,7 +89,7 @@ const IsVaccinated = () => {
                 />
 
                 <RadioInput
-                  name="WhatAreYouWaiting"
+                  name="i_am_waiting"
                   label="გადატანილი მაქვს და ვგეგმავ აცრას"
                   registerOptions={{
                     required: true,
@@ -98,8 +98,9 @@ const IsVaccinated = () => {
               </div>
             )}
 
-            {WhatStageIs === "პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე" &&
-              isVaccinated === "კი" && (
+            {vaccination_stage ===
+              "პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე" &&
+              had_vaccine === "კი" && (
                 <div className="max-w-md w-52 mt-10 ml-6">
                   <p>
                     რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი{" "}
@@ -110,8 +111,8 @@ const IsVaccinated = () => {
                 </div>
               )}
 
-            {WhatAreYouWaiting === "გადატანილი მაქვს და ვგეგმავ აცრას" &&
-              isVaccinated === "არა" && (
+            {i_am_waiting === "გადატანილი მაქვს და ვგეგმავ აცრას" &&
+              had_vaccine === "არა" && (
                 <div className=" w-96 mt-10 ml-6">
                   <p className="mb-5">
                     ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ

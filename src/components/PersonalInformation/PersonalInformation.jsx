@@ -14,7 +14,7 @@ const PersonalInformation = () => {
           <div className="flex-1 ">
             <div className="max-w-md w-full mt-10">
               <Input
-                name="name"
+                name="first_name"
                 label="სახელი*"
                 placeholder="იოსებ"
                 registerOptions={{
@@ -27,7 +27,7 @@ const PersonalInformation = () => {
                 }}
               />
               <Input
-                name="username"
+                name="last_name"
                 label="გვარი*"
                 registerOptions={{
                   required: "ამ ველის შევსება სავალდებულოა",

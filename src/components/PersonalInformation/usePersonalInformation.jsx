@@ -6,8 +6,8 @@ const usePersonalInformation = () => {
     useContextVariables();
   const form = useForm({
     defaultValues: {
-      name: inputValues?.name || null,
-      username: inputValues?.username || null,
+      first_name: inputValues?.first_name || null,
+      last_name: inputValues?.last_name || null,
       email: inputValues?.email || null,
     },
   });
