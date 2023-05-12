@@ -6,16 +6,16 @@ const useIsVaccinated = () => {
     useContextVariables();
   const form = useForm({
     defaultValues: {
-      isVaccinated: inputValues?.isVaccinated || null,
-      WhatAreYouWaiting: inputValues?.WhatAreYouWaiting || null,
-      WhatStageIs: inputValues?.WhatStageIs || null,
+      had_vaccine: inputValues?.had_vaccine || null,
+      i_am_waiting: inputValues?.i_am_waiting || null,
+      vaccination_stage: inputValues?.vaccination_stage || null,
     },
   });
   const { handleSubmit, control, register, setValue } = form;
 
-  const [isVaccinated, WhatStageIs, WhatAreYouWaiting] = useWatch({
+  const [had_vaccine, vaccination_stage, i_am_waiting] = useWatch({
     control,
-    name: ["isVaccinated", "WhatStageIs", "WhatAreYouWaiting"],
+    name: ["had_vaccine", "vaccination_stage", "i_am_waiting"],
   });
 
   const submitForm = (data) => {
@@ -34,8 +34,8 @@ const useIsVaccinated = () => {
   };
 
   const resetFields = (e) => {
-    setValue("WhatStageIs", null);
-    setValue("WhatAreYouWaiting", null);
+    setValue("vaccination_stage", null);
+    setValue("i_am_waiting", null);
   };
 
   return {
@@ -50,9 +50,9 @@ const useIsVaccinated = () => {
     control,
     register,
     setValue,
-    isVaccinated,
-    WhatStageIs,
-    WhatAreYouWaiting,
+    had_vaccine,
+    vaccination_stage,
+    i_am_waiting,
   };
 };
 

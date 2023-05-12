@@ -6,18 +6,18 @@ const useCovidCondition = () => {
     useContextVariables();
   const form = useForm({
     defaultValues: {
-      isInfected: inputValues?.isInfected || null,
-      isTested: inputValues?.isTested || null,
-      dateOfTest: inputValues?.dateOfTest || null,
-      dateOfCovid: inputValues?.dateOfCovid || null,
-      antiVaccineCount: inputValues?.antiVaccineCount || null,
+      had_covid: inputValues?.had_covid || null,
+      had_antibody_test: inputValues?.had_antibody_test || null,
+      test_date: inputValues?.test_date || null,
+      covid_sickness_date: inputValues?.covid_sickness_date || null,
+      number: inputValues?.number || null,
     },
   });
 
   const { handleSubmit, control, register, setValue } = form;
-  const [isInfected, isTested] = useWatch({
+  const [had_covid, had_antibody_test] = useWatch({
     control,
-    name: ["isInfected", "isTested"],
+    name: ["had_covid", "had_antibody_test"],
   });
 
   const submitForm = (data) => {
@@ -36,16 +36,16 @@ const useCovidCondition = () => {
   };
 
   const resetFields = () => {
-    setValue("isTested", null);
-    setValue("dateOfTest", null);
-    setValue("dateOfCovid", null);
-    setValue("antiVaccineCount", null);
+    setValue("had_antibody_test", null);
+    setValue("test_date", null);
+    setValue("covid_sickness_date", null);
+    setValue("number", null);
   };
 
   const resetLastFields = () => {
-    setValue("dateOfTest", null);
-    setValue("dateOfCovid", null);
-    setValue("antiVaccineCount", null);
+    setValue("test_date", null);
+    setValue("covid_sickness_date", null);
+    setValue("number", null);
   };
 
   return {
@@ -60,9 +60,8 @@ const useCovidCondition = () => {
     back,
     resetFields,
     resetLastFields,
-    register,
-    isInfected,
-    isTested,
+    had_covid,
+    had_antibody_test,
   };
 };
 

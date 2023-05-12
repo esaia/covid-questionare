@@ -6,22 +6,40 @@ const useCovidPolitic = () => {
     useContextVariables();
   const form = useForm({
     defaultValues: {
-      meetingFrequency: inputValues?.meetingFrequency || null,
-      remoteWorkDay: inputValues?.remoteWorkDay || null,
-      physicalMeetings: inputValues?.physicalMeetings || null,
-      whatWouldYouChange: inputValues?.whatWouldYouChange || null,
+      non_formal_meetings: inputValues?.non_formal_meetings || null,
+      number_of_days_from_office:
+        inputValues?.number_of_days_from_office || null,
+      what_about_meetings_in_live:
+        inputValues?.what_about_meetings_in_live || null,
+      tell_us_your_opinion_about_us:
+        inputValues?.tell_us_your_opinion_about_us || null,
     },
   });
   const { handleSubmit, control, register } = form;
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    setCurrentPage((prev) => prev + 1);
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
-    localStorage.setItem("currentPage", currentPage + 1);
+
+    try {
+      const postData = async () => {
+        await fetch(import.meta.env.VITE_API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...inputValues, ...data }),
+        });
+      };
+      postData();
+      setCurrentPage((prev) => prev + 1);
+      localStorage.setItem("currentPage", currentPage + 1);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const back = () => {

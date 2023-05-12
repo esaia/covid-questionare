@@ -13,7 +13,7 @@ const CovidPolitic = () => {
       <form onSubmit={handleSubmit(submitForm)}>
         <div className="flex mt-3 justify-between  min-h-[800px] ">
           <div className="flex-1 ">
-            <div className="max-w-xl w-full mt-10">
+            <div className="max-w-xl w-full mt-10 ">
               <p>
                 რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია.
                 გარემო, რომელსაც ჩვენი თანამშრომლები ქმნით, ბევრისთვის არის და
@@ -28,30 +28,33 @@ const CovidPolitic = () => {
             </div>
 
             <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold">გაქვს გადატანილი Covid-19?*</h2>
+              <h2 className="font-bold font-Helvetica">
+                რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ
+                შეხვედრები, სადაც ყველა სურვილისამებრ ჩაერთვება?*
+              </h2>
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="კვირაში ორჯერ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="ორ კვირაში ერთხელ"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="meetingFrequency"
+                name="non_formal_meetings"
                 label="თვეში ერთხელ"
                 registerOptions={{
                   required: true,
@@ -60,46 +63,46 @@ const CovidPolitic = () => {
             </div>
 
             <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold">
+              <h2 className="font-bold font-Helvetica">
                 კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*
               </h2>
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="0"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="1"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="2"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="3"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="4"
                 registerOptions={{
                   required: true,
                 }}
               />
               <RadioInput
-                name="remoteWorkDay"
+                name="number_of_days_from_office"
                 label="5"
                 registerOptions={{
                   required: true,
@@ -107,29 +110,31 @@ const CovidPolitic = () => {
               />
             </div>
 
-            <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold mb-3">რას ფიქრობ ფიზიკურ შეკრებებზე?</h2>
+            <div className="max-w-xl w-full mt-10">
+              <h2 className="font-bold mb-3 font-Helvetica">
+                რას ფიქრობ ფიზიკურ შეკრებებზე?
+              </h2>
               <textarea
-                {...register("physicalMeetings")}
-                cols="56"
+                {...register("what_about_meetings_in_live")}
                 rows="5"
-                className="border border-black outline-none p-2"
+                className="border border-black outline-none p-2 w-full"
               ></textarea>
             </div>
 
-            <div className="max-w-md w-full mt-10">
-              <h2 className="font-bold">რას ფიქრობ არსებულ გარემოზე:</h2>
-              <h2 className="font-bold mb-3">
+            <div className="max-w-xl w-full mt-10">
+              <h2 className="font-bold font-Helvetica">
+                რას ფიქრობ არსებულ გარემოზე:
+              </h2>
+              <h2 className="font-bold mb-3 font-Helvetica">
                 რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?
               </h2>
               <textarea
-                {...register("whatWouldYouChange")}
-                cols="56"
+                {...register("tell_us_your_opinion_about_us")}
                 rows="5"
-                className="border border-black outline-none p-2"
+                className="border border-black outline-none p-2 w-full"
               ></textarea>
             </div>
-            <div className="w-full  flex justify-end items-center mt-4">
+            <div className="max-w-xl w-full  flex justify-end items-center mt-10">
               <button
                 type="submit"
                 className="font-bold px-5 py-2 text-white rounded-3xl bg-[#208298] "
@@ -138,12 +143,14 @@ const CovidPolitic = () => {
               </button>
             </div>
           </div>
-          <div className="flex-2 flex justify-end items-start ">
-            <img className="w-10/12  " src="/images/four.png" alt="" />
+          <div className="relative">
+            <div className="flex-2 flex justify-end items-start sticky top-3 right-0">
+              <img className="w-10/12  " src="/images/four.png" alt="" />
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-row-reverse justify-center gap-20 w-full  ">
+        <div className="flex flex-row-reverse justify-center gap-20 w-full mt-20 mb-10 ">
           <button className="cursor-pointer w-20"></button>
           <button onClick={back} className="cursor-pointer w-20">
             <LeftArrow />

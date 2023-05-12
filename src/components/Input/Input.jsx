@@ -21,7 +21,7 @@ const Input = ({
         "flex flex-col gap-2 mb-6 justify-start items-start " + className
       }
     >
-      <label htmlFor={name} className="font-bold">
+      <label htmlFor={name} className="font-bold font-Helvetica">
         {label}
       </label>
       <input

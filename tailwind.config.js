@@ -5,6 +5,13 @@ export default {
       flex: {
         2: "2 2 0%",
       },
+      colors: {
+        brown: "#232323",
+      },
+    },
+
+    fontFamily: {
+      Helvetica: "Helvetica",
     },
   },
   plugins: [],
