@@ -32,6 +32,7 @@ const usePersonalInformation = () => {
     handleSubmit,
     control,
     submitForm,
+    currentPage,
   };
 };
 

@@ -8,3 +8,4 @@ export * from "./RadioInput";
 export * from "./IsVaccinated";
 export * from "./CovidPolitic";
 export * from "./ThankYouPage";
+export * from "./FramerMotionWrapper";
