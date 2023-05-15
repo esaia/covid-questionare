@@ -1,6 +1,6 @@
 import React from "react";
 import { Redberry } from "@/components";
-import { useContextVariables, useMultiStepForm } from "@/hooks";
+import { useContextVariables } from "@/hooks";
 
 const FormWrapper = ({ children }) => {
   const { currentPage } = useContextVariables();
