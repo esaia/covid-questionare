@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
+import { useNavigate } from "react-router-dom";
 
 const useCovidPolitic = () => {
-  const { currentPage, setCurrentPage, inputValues, setInputValues } =
-    useContextVariables();
+  const navigate = useNavigate();
+  const { inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
       non_formal_meetings: inputValues?.non_formal_meetings || null,
@@ -35,21 +36,18 @@ const useCovidPolitic = () => {
         });
       };
       postData();
-      setCurrentPage((prev) => prev + 1);
-      localStorage.setItem("currentPage", currentPage + 1);
+      navigate("/covid-politic");
     } catch (error) {
       console.error(error);
     }
   };
 
   const back = () => {
-    setCurrentPage((prev) => prev - 1);
-    localStorage.setItem("currentPage", currentPage - 1);
+    navigate("/is-vaccinated");
   };
 
   return {
     form,
-    setCurrentPage,
     inputValues,
     setInputValues,
     handleSubmit,

@@ -6,14 +6,9 @@ const FormProvider = ({ children }) => {
   const [inputValues, setInputValues] = useState(
     JSON.parse(localStorage.getItem("inputValues")) || {}
   );
-  const [currentPage, setCurrentPage] = useState(
-    +localStorage.getItem("currentPage") || 0
-  );
 
   return (
-    <FormContext.Provider
-      value={{ inputValues, setInputValues, currentPage, setCurrentPage }}
-    >
+    <FormContext.Provider value={{ inputValues, setInputValues }}>
       {children}
     </FormContext.Provider>
   );
