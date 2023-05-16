@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
-
+import { useNavigate } from "react-router-dom";
 const usePersonalInformation = () => {
-  const { currentPage, setCurrentPage, inputValues, setInputValues } =
-    useContextVariables();
+  const navigate = useNavigate();
+  const { inputValues, setInputValues } = useContextVariables();
+
   const form = useForm({
     defaultValues: {
       first_name: inputValues?.first_name || null,
@@ -15,24 +16,20 @@ const usePersonalInformation = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    setCurrentPage((prev) => prev + 1);
-
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
-    localStorage.setItem("currentPage", currentPage + 1);
+    navigate("/covid-condition");
   };
 
   return {
     form,
-    setCurrentPage,
     inputValues,
     setInputValues,
     handleSubmit,
     control,
     submitForm,
-    currentPage,
   };
 };
 

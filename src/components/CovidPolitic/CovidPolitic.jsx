@@ -1,5 +1,10 @@
 import React from "react";
-import { LeftArrow, RadioInput, FramerMotionWrapper } from "@/components";
+import {
+  LeftArrow,
+  RadioInput,
+  Heart,
+  FramerMotionWrapper,
+} from "@/components";
 import { FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import useCovidPolitic from "./useCovidPolitic";
@@ -144,10 +149,14 @@ const CovidPolitic = () => {
                 </button>
               </div>
             </div>
-            <div className="relative">
-              <div className="flex-2 flex justify-end items-start sticky top-3 right-0">
-                <img className="w-10/12  " src="/images/four.png" alt="" />
-              </div>
+            <div className="flex-2 flex justify-end items-start relative ">
+              <Heart />
+
+              <img
+                className="w-8/12  absolute top-0 left-[60%] translate-x-[-50%]  "
+                src="/images/four.png"
+                alt=""
+              />
             </div>
           </div>
 

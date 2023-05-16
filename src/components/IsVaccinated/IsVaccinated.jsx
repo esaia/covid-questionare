@@ -3,12 +3,11 @@ import {
   RightArrow,
   LeftArrow,
   RadioInput,
+  Star,
   FramerMotionWrapper,
 } from "@/components";
 import { FormProvider } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import useIsVaccinated from "./useIsVaccinated";
-import { motion } from "framer-motion";
 
 const IsVaccinated = () => {
   const {
@@ -17,7 +16,6 @@ const IsVaccinated = () => {
     back,
     resetFields,
     handleSubmit,
-    control,
     had_vaccine,
     vaccination_stage,
     i_am_waiting,
@@ -133,18 +131,13 @@ const IsVaccinated = () => {
                 )}
             </div>
 
-            <div className="flex-2 flex justify-end items-start ">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8, translateX: -100 }}
-                animate={{ opacity: 1, scale: 1, translateX: 0 }}
-                exit={{ scale: 2, translateX: 300 }}
-                transition={{
-                  ease: "easeOut",
-                  duration: 1,
-                }}
-              >
-                <img className="w-10/12" src="/images/three.png" alt="" />
-              </motion.div>
+            <div className="flex-2 flex justify-end items-start relative  ">
+              <Star />
+              <img
+                className="w-10/12  absolute top-0 left-[50%] translate-x-[-50%]  "
+                src="/images/three.png"
+                alt=""
+              />
             </div>
           </div>
 
@@ -157,7 +150,6 @@ const IsVaccinated = () => {
             </button>
           </div>
         </form>
-        <DevTool control={control} />
       </FormProvider>
     </FramerMotionWrapper>
   );

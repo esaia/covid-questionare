@@ -1,33 +1,62 @@
-import { useMultiStepForm } from "@/hooks";
 import {
-  PersonalInformation,
   FormWrapper,
   Starter,
+  PersonalInformation,
   CovidCondition,
   IsVaccinated,
   CovidPolitic,
   ThankYouPage,
 } from "@/components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const { step } = useMultiStepForm([
-    <Starter />,
-    <FormWrapper>
-      <PersonalInformation />
-    </FormWrapper>,
-    <FormWrapper>
-      <CovidCondition />
-    </FormWrapper>,
-    <FormWrapper>
-      <IsVaccinated />
-    </FormWrapper>,
-    <FormWrapper>
-      <CovidPolitic />
-    </FormWrapper>,
-    <ThankYouPage />,
-  ]);
+  return (
+    <div className="bg-[#EAEAEA] min-h-screen">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Starter />} />
 
-  return <div className="bg-[#EAEAEA] min-h-screen">{step}</div>;
+          <Route
+            path="/personal"
+            element={
+              <FormWrapper>
+                <PersonalInformation />
+              </FormWrapper>
+            }
+          />
+
+          <Route
+            path="/covid-condition"
+            element={
+              <FormWrapper>
+                <CovidCondition />
+              </FormWrapper>
+            }
+          />
+
+          <Route
+            path="/is-vaccinated"
+            element={
+              <FormWrapper>
+                <IsVaccinated />
+              </FormWrapper>
+            }
+          />
+
+          <Route
+            path="/covid-politic"
+            element={
+              <FormWrapper>
+                <CovidPolitic />
+              </FormWrapper>
+            }
+          />
+
+          <Route path="/thank-you" element={<ThankYouPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Star } from "@/components";
+import { ThankYouStar } from "@/components";
 import { motion } from "framer-motion";
 
 const ThankYouPage = () => {
@@ -17,7 +17,7 @@ const ThankYouPage = () => {
           }}
         >
           <div className="absolute top-[-50px] left-[20px] scale-75">
-            <Star />
+            <ThankYouStar />
           </div>
         </motion.div>
         <motion.div
@@ -43,7 +43,7 @@ const ThankYouPage = () => {
           }}
         >
           <div className="absolute bottom-[-40px] right-[20px] scale-50 ">
-            <Star />
+            <ThankYouStar />
           </div>
         </motion.div>
       </div>

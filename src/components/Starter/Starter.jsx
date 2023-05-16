@@ -1,10 +1,9 @@
 import React from "react";
 import { Logo } from "@/components";
-import useStarter from "./useStarter";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Starter = () => {
-  const { changePage } = useStarter();
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-10 ">
       <motion.div
@@ -27,12 +26,11 @@ const Starter = () => {
             delay: 0.4,
           }}
         >
-          <h1
-            className="font-bolds text-3xl w-40 text-center cursor-pointer"
-            onClick={changePage}
-          >
-            კითხვარის დაწყება
-          </h1>
+          <Link to="/personal">
+            <h1 className="font-bolds text-3xl w-40 text-center cursor-pointer">
+              კითხვარის დაწყება
+            </h1>
+          </Link>
         </motion.div>
       </div>
     </div>

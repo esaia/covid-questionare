@@ -1,9 +1,11 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
+import { useNavigate } from "react-router-dom";
 
 const useCovidCondition = () => {
-  const { currentPage, setCurrentPage, inputValues, setInputValues } =
-    useContextVariables();
+  const navigate = useNavigate();
+
+  const { inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
       had_covid: inputValues?.had_covid || null,
@@ -22,17 +24,15 @@ const useCovidCondition = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    setCurrentPage((prev) => prev + 1);
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
-    localStorage.setItem("currentPage", currentPage + 1);
+    navigate("/is-vaccinated");
   };
 
   const back = () => {
-    setCurrentPage((prev) => prev - 1);
-    localStorage.setItem("currentPage", currentPage - 1);
+    navigate("/personal");
   };
 
   const resetFields = () => {
@@ -53,7 +53,6 @@ const useCovidCondition = () => {
     handleSubmit,
     control,
     register,
-    setCurrentPage,
     inputValues,
     setInputValues,
     submitForm,

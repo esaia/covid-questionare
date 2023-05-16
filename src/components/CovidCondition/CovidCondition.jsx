@@ -4,18 +4,16 @@ import {
   LeftArrow,
   RadioInput,
   Input,
+  RedCircle,
   FramerMotionWrapper,
 } from "@/components";
 import { FormProvider } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import useCovidCondition from "./useCovidCondition";
-import { motion } from "framer-motion";
 
 const CovidCondition = () => {
   const {
     form,
     handleSubmit,
-    control,
     submitForm,
     back,
     resetFields,
@@ -130,19 +128,14 @@ const CovidCondition = () => {
               )}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, translateX: 100 }}
-              animate={{ opacity: 1, scale: 1, translateX: 0 }}
-              exit={{ scale: 2, translateX: 300 }}
-              transition={{
-                ease: "easeOut",
-                duration: 1,
-              }}
-            >
-              <div className="flex-2 flex justify-end items-start ">
-                <img className="w-10/12  " src="/images/two.png" alt="" />
-              </div>
-            </motion.div>
+            <div className="flex-2 flex justify-end items-start relative  ">
+              <RedCircle />
+              <img
+                className="w-10/12  absolute top-0 left-[50%] translate-x-[-50%]  "
+                src="/images/two.png"
+                alt=""
+              />
+            </div>
           </div>
 
           <div className="flex flex-row-reverse justify-center gap-20 w-full  ">
@@ -154,7 +147,6 @@ const CovidCondition = () => {
             </button>
           </div>
         </form>
-        <DevTool control={control} />
       </FormProvider>
     </FramerMotionWrapper>
   );

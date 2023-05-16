@@ -14,7 +14,9 @@
     "framer-motion": "^10.12.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9"
+    "react-hook-form": "^7.43.9",
+    "react-router-dom": "^6.11.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
