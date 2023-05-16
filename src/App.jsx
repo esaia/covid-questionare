@@ -1,7 +1,7 @@
 import {
-  PersonalInformation,
   FormWrapper,
   Starter,
+  PersonalInformation,
   CovidCondition,
   IsVaccinated,
   CovidPolitic,

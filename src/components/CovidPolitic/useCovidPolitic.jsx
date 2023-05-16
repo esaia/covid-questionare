@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useCovidPolitic = () => {
   const navigate = useNavigate();
+
   const { inputValues, setInputValues } = useContextVariables();
   const form = useForm({
     defaultValues: {
@@ -36,7 +37,7 @@ const useCovidPolitic = () => {
         });
       };
       postData();
-      navigate("/covid-politic");
+      navigate("/thank-you");
     } catch (error) {
       console.error(error);
     }

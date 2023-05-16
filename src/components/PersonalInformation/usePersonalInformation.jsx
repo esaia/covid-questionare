@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useContextVariables } from "@/hooks";
 import { useNavigate } from "react-router-dom";
-
 const usePersonalInformation = () => {
   const navigate = useNavigate();
-
   const { inputValues, setInputValues } = useContextVariables();
 
   const form = useForm({
@@ -18,11 +16,11 @@ const usePersonalInformation = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    navigate("/covid-condition");
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
+    navigate("/covid-condition");
   };
 
   return {

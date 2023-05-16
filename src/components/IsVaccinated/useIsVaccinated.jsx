@@ -13,7 +13,7 @@ const useIsVaccinated = () => {
       vaccination_stage: inputValues?.vaccination_stage || null,
     },
   });
-  const { handleSubmit, control, register, setValue, formState } = form;
+  const { handleSubmit, control, register, setValue } = form;
 
   const [had_vaccine, vaccination_stage, i_am_waiting] = useWatch({
     control,
@@ -22,12 +22,12 @@ const useIsVaccinated = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    navigate("/covid-politic");
 
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
+    navigate("/covid-politic");
   };
 
   const back = () => {

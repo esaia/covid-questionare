@@ -24,13 +24,11 @@ const useCovidCondition = () => {
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-
-    navigate("/is-vaccinated");
-
     localStorage.setItem(
       "inputValues",
       JSON.stringify({ ...inputValues, ...data })
     );
+    navigate("/is-vaccinated");
   };
 
   const back = () => {
