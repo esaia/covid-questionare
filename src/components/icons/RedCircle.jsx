@@ -13,10 +13,6 @@ const RedCircle = () => {
             ease: "easeOut",
             duration: 0.4,
           }}
-          // cx="350"
-          // cy="200"
-          // rx="300"
-          // ry="40"
           fill="#DD3939"
         />
       </svg>

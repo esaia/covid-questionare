@@ -11,7 +11,6 @@ const Star = () => {
           ease: "easeOut",
           duration: 0.5,
         }}
-        // viewBox="0 0 800 600"
         width="750"
         height="513"
         fill="none"
