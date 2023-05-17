@@ -43,10 +43,10 @@ npm start
 
 ### Screenshots
 
-#### Home Page
+#### Page one
 
 ![App Screenshot](/public/images/page_one.jpg)
 
-#### Admin Panel
+#### Page two
 
 ![App Screenshot](/public/images/page_two.jpg)
