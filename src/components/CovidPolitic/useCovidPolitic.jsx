@@ -17,14 +17,15 @@ const useCovidPolitic = () => {
         inputValues?.tell_us_your_opinion_about_us || null,
     },
   });
-  const { handleSubmit, control, register } = form;
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = form;
 
   const submitForm = (data) => {
     setInputValues({ ...inputValues, ...data });
-    localStorage.setItem(
-      "inputValues",
-      JSON.stringify({ ...inputValues, ...data })
-    );
 
     try {
       const postData = async () => {
@@ -35,6 +36,8 @@ const useCovidPolitic = () => {
           },
           body: JSON.stringify({ ...inputValues, ...data }),
         });
+
+        localStorage.setItem("inputValues", JSON.stringify({}));
       };
       postData();
       navigate("/thank-you");
@@ -56,6 +59,7 @@ const useCovidPolitic = () => {
     register,
     submitForm,
     back,
+    errors,
   };
 };
 

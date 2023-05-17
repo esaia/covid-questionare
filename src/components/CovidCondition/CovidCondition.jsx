@@ -6,9 +6,11 @@ import {
   Input,
   RedCircle,
   FramerMotionWrapper,
+  RightArrowLight,
 } from "@/components";
 import { FormProvider } from "react-hook-form";
 import useCovidCondition from "./useCovidCondition";
+import { ErrorMessage } from "@hookform/error-message";
 
 const CovidCondition = () => {
   const {
@@ -20,6 +22,7 @@ const CovidCondition = () => {
     resetLastFields,
     had_covid,
     had_antibody_test,
+    errors,
   } = useCovidCondition();
 
   return (
@@ -36,7 +39,7 @@ const CovidCondition = () => {
                   name="had_covid"
                   label="კი"
                   registerOptions={{
-                    required: true,
+                    required: "ამ ველის შევსება სავალდებულოა",
                     onChange: (e) => resetFields(e),
                   }}
                 />
@@ -44,7 +47,7 @@ const CovidCondition = () => {
                   name="had_covid"
                   label="არა"
                   registerOptions={{
-                    required: true,
+                    required: "ამ ველის შევსება სავალდებულოა",
                     onChange: (e) => resetFields(e),
                   }}
                 />
@@ -52,10 +55,20 @@ const CovidCondition = () => {
                   name="had_covid"
                   label="ახლა მაქვს"
                   registerOptions={{
-                    required: true,
+                    required: "ამ ველის შევსება სავალდებულოა",
                     onChange: (e) => resetFields(e),
                   }}
                 />
+
+                <div className="h-2">
+                  <ErrorMessage
+                    errors={errors}
+                    name={"had_covid"}
+                    render={({ message }) => (
+                      <p className="text-sm text-red-500 ml-3">{message}</p>
+                    )}
+                  />
+                </div>
               </div>
 
               {had_covid === "კი" && (
@@ -67,7 +80,7 @@ const CovidCondition = () => {
                     name="had_antibody_test"
                     label="კი"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                       onChange: (e) => resetLastFields(e),
                     }}
                   />
@@ -75,10 +88,20 @@ const CovidCondition = () => {
                     name="had_antibody_test"
                     label="არა"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                       onChange: (e) => resetLastFields(e),
                     }}
                   />
+
+                  <div className="h-2">
+                    <ErrorMessage
+                      errors={errors}
+                      name={"had_antibody_test"}
+                      render={({ message }) => (
+                        <p className="text-sm text-red-500 ml-3">{message}</p>
+                      )}
+                    />
+                  </div>
                 </div>
               )}
               {had_antibody_test === "კი" && (
@@ -93,17 +116,16 @@ const CovidCondition = () => {
                     placeholder="რიცხვი"
                     type="date"
                     className="mb-2"
-                    registerOptions={{
-                      required: true,
-                    }}
                   />
 
                   <Input
                     name="number"
-                    type="number"
                     placeholder="ანტისხეულების რაოდენობა"
                     registerOptions={{
-                      required: true,
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: "Please enter only numbers",
+                      },
                     }}
                   />
                 </div>
@@ -120,9 +142,6 @@ const CovidCondition = () => {
                     name="covid_sickness_date"
                     type="date"
                     placeholder="დდ/თთ/წწ"
-                    registerOptions={{
-                      required: true,
-                    }}
                   />
                 </div>
               )}
@@ -140,7 +159,11 @@ const CovidCondition = () => {
 
           <div className="flex flex-row-reverse justify-center gap-20 w-full  ">
             <button type="submit" className="cursor-pointer w-20">
-              <RightArrow />
+              {Object.keys(errors).length !== 0 ? (
+                <RightArrowLight />
+              ) : (
+                <RightArrow />
+              )}
             </button>
             <button onClick={back} className="cursor-pointer w-20">
               <LeftArrow />

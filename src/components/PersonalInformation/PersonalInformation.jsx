@@ -16,7 +16,7 @@ const PersonalInformation = () => {
         <form onSubmit={handleSubmit(submitForm)}>
           <div className="flex mt-3 justify-between min-h-[800px]  ">
             <div className="flex-1 ">
-              <div className="max-w-md w-full mt-10">
+              <div className="max-w-md w-full mt-10 ">
                 <Input
                   name="first_name"
                   label="სახელი*"
@@ -33,6 +33,7 @@ const PersonalInformation = () => {
                 <Input
                   name="last_name"
                   label="გვარი*"
+                  placeholder="ჯუღაშვილი"
                   registerOptions={{
                     required: "ამ ველის შევსება სავალდებულოა",
                     minLength: {
@@ -45,6 +46,7 @@ const PersonalInformation = () => {
                 <Input
                   name="email"
                   label="მეილი*"
+                  placeholder="fbi@redberry.ge"
                   registerOptions={{
                     required: "ამ ველის შევსება სავალდებულოა",
                     pattern: {

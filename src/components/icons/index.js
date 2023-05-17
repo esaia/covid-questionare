@@ -7,3 +7,4 @@ export { default as YellowRectangle } from "./YellowRectangle";
 export { default as RedCircle } from "./RedCircle";
 export { default as Heart } from "./Heart";
 export { default as ThankYouStar } from "./ThankYouStar";
+export { default as RightArrowLight } from "./RightArrowLight";

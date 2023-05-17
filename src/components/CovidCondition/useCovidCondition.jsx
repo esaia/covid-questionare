@@ -16,7 +16,13 @@ const useCovidCondition = () => {
     },
   });
 
-  const { handleSubmit, control, register, setValue } = form;
+  const {
+    handleSubmit,
+    control,
+    register,
+    setValue,
+    formState: { errors },
+  } = form;
   const [had_covid, had_antibody_test] = useWatch({
     control,
     name: ["had_covid", "had_antibody_test"],
@@ -61,6 +67,7 @@ const useCovidCondition = () => {
     resetLastFields,
     had_covid,
     had_antibody_test,
+    errors,
   };
 };
 
