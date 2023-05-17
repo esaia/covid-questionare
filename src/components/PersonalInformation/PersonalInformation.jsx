@@ -7,9 +7,8 @@ import {
 } from "@/components";
 import { FormProvider } from "react-hook-form";
 import usePersonalInformation from "./usePersonalInformation";
-import { DevTool } from "@hookform/devtools";
 const PersonalInformation = () => {
-  const { form, handleSubmit, control, submitForm } = usePersonalInformation();
+  const { form, handleSubmit, submitForm } = usePersonalInformation();
 
   return (
     <FramerMotionWrapper>
@@ -81,7 +80,6 @@ const PersonalInformation = () => {
               <RightArrow />
             </button>
           </div>
-          <DevTool control={control} />
         </form>
       </FormProvider>
     </FramerMotionWrapper>

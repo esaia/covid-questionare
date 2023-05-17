@@ -6,7 +6,6 @@ import {
   FramerMotionWrapper,
 } from "@/components";
 import { FormProvider } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import useCovidPolitic from "./useCovidPolitic";
 
 const CovidPolitic = () => {
@@ -167,7 +166,6 @@ const CovidPolitic = () => {
             </button>
           </div>
         </form>
-        <DevTool control={control} />
       </FormProvider>
     </FramerMotionWrapper>
   );
