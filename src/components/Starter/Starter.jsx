@@ -27,7 +27,7 @@ const Starter = () => {
           }}
         >
           <Link to="/personal">
-            <h1 className="font-bolds text-3xl w-40 text-center cursor-pointer">
+            <h1 className="font-bolds text-3xl w-40 text-center cursor-pointer hover:drop-shadow-lg ">
               კითხვარის დაწყება
             </h1>
           </Link>
