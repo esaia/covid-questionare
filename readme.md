@@ -29,24 +29,20 @@ The COVID-Questionnaire website is a user-friendly platform designed to help ind
 https://github.com/RedberryInternship/esaia-gaprindashvili-covid-questionare
 ```
 
-2\. Run npm install to install the dependencies
+2\. Make a copy of .env.example and rename it to .env. You can do this using the command line or by manually renaming the file.
+
+```sh
+cp .env.example .env
+```
+
+3\. Run npm install to install the dependencies
 
 ```sh
 npm install
 ```
 
-3\. Run npm start to start the server
+4\. Run npm start to start the server
 
 ```sh
 npm start
 ```
-
-### Screenshots
-
-#### Page one
-
-![App Screenshot](/public/images/page_one.jpg)
-
-#### Page two
-
-![App Screenshot](/public/images/page_two.jpg)
