@@ -14,7 +14,6 @@ const Input = ({
     formState: { errors },
     register,
   } = useFormContext();
-
   return (
     <div
       className={
@@ -31,7 +30,7 @@ const Input = ({
         className="input"
         {...register(name, registerOptions)}
       />
-      <div>
+      <div className="h-2">
         <ErrorMessage
           errors={errors}
           name={name}

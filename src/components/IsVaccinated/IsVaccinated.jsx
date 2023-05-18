@@ -5,9 +5,11 @@ import {
   RadioInput,
   Star,
   FramerMotionWrapper,
+  RightArrowLight,
 } from "@/components";
 import { FormProvider } from "react-hook-form";
 import useIsVaccinated from "./useIsVaccinated";
+import { ErrorMessage } from "@hookform/error-message";
 
 const IsVaccinated = () => {
   const {
@@ -19,6 +21,7 @@ const IsVaccinated = () => {
     had_vaccine,
     vaccination_stage,
     i_am_waiting,
+    errors,
   } = useIsVaccinated();
 
   return (
@@ -33,7 +36,7 @@ const IsVaccinated = () => {
                   name="had_vaccine"
                   label="კი"
                   registerOptions={{
-                    required: true,
+                    required: "ამ ველის შევსება სავალდებულოა",
                     onChange: (e) => resetFields(e),
                   }}
                 />
@@ -41,10 +44,20 @@ const IsVaccinated = () => {
                   name="had_vaccine"
                   label="არა"
                   registerOptions={{
-                    required: true,
+                    required: "ამ ველის შევსება სავალდებულოა",
                     onChange: (e) => resetFields(e),
                   }}
                 />
+
+                <div className="h-2">
+                  <ErrorMessage
+                    errors={errors}
+                    name={"had_vaccine"}
+                    render={({ message }) => (
+                      <p className="text-sm text-red-500 ml-3">{message}</p>
+                    )}
+                  />
+                </div>
               </div>
               {had_vaccine === "კი" && (
                 <div className="max-w-xl w-full mt-10">
@@ -55,14 +68,14 @@ const IsVaccinated = () => {
                     name="vaccination_stage"
                     label="პირველი დოზა და დარეგისტრირებული ვარ მეორეზე"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
                   <RadioInput
                     name="vaccination_stage"
                     label="სრულად აცრილი ვარ"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
 
@@ -70,9 +83,19 @@ const IsVaccinated = () => {
                     name="vaccination_stage"
                     label="პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
+
+                  <div className="h-2">
+                    <ErrorMessage
+                      errors={errors}
+                      name={"vaccination_stage"}
+                      render={({ message }) => (
+                        <p className="text-sm text-red-500 ml-3">{message}</p>
+                      )}
+                    />
+                  </div>
                 </div>
               )}
               {had_vaccine === "არა" && (
@@ -82,14 +105,14 @@ const IsVaccinated = () => {
                     name="i_am_waiting"
                     label="დარეგისტრირებული ვარ და ველოდები რიცხვს"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
                   <RadioInput
                     name="i_am_waiting"
                     label="არ ვგეგმავ"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
 
@@ -97,9 +120,19 @@ const IsVaccinated = () => {
                     name="i_am_waiting"
                     label="გადატანილი მაქვს და ვგეგმავ აცრას"
                     registerOptions={{
-                      required: true,
+                      required: "ამ ველის შევსება სავალდებულოა",
                     }}
                   />
+
+                  <div className="h-2">
+                    <ErrorMessage
+                      errors={errors}
+                      name={"i_am_waiting"}
+                      render={({ message }) => (
+                        <p className="text-sm text-red-500 ml-3">{message}</p>
+                      )}
+                    />
+                  </div>
                 </div>
               )}
 
@@ -143,7 +176,11 @@ const IsVaccinated = () => {
 
           <div className="flex flex-row-reverse justify-center gap-20 w-full  ">
             <button type="submit" className="cursor-pointer w-20">
-              <RightArrow />
+              {Object.keys(errors).length !== 0 ? (
+                <RightArrowLight />
+              ) : (
+                <RightArrow />
+              )}
             </button>
             <button onClick={back} className="cursor-pointer w-20">
               <LeftArrow />

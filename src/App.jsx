@@ -6,6 +6,7 @@ import {
   IsVaccinated,
   CovidPolitic,
   ThankYouPage,
+  NotFound,
 } from "@/components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -51,6 +52,8 @@ function App() {
               </FormWrapper>
             }
           />
+
+          <Route path="*" element={<NotFound />} />
 
           <Route path="/thank-you" element={<ThankYouPage />} />
         </Routes>

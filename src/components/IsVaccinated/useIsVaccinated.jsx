@@ -13,7 +13,13 @@ const useIsVaccinated = () => {
       vaccination_stage: inputValues?.vaccination_stage || null,
     },
   });
-  const { handleSubmit, control, register, setValue } = form;
+  const {
+    handleSubmit,
+    control,
+    register,
+    setValue,
+    formState: { errors },
+  } = form;
 
   const [had_vaccine, vaccination_stage, i_am_waiting] = useWatch({
     control,
@@ -53,6 +59,7 @@ const useIsVaccinated = () => {
     had_vaccine,
     vaccination_stage,
     i_am_waiting,
+    errors,
   };
 };
 
