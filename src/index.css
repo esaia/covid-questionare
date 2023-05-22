@@ -6,6 +6,10 @@
   font-family: "BPG Arial", sans-serif;
 }
 
+.textshadow:hover {
+  text-shadow: 4px 0px #07060666;
+}
+
 .input {
   @apply px-3 py-2 border border-black outline-none bg-[#eaeaea] w-full;
 }

@@ -124,7 +124,7 @@ const CovidCondition = () => {
                     registerOptions={{
                       pattern: {
                         value: /^[0-9]+$/,
-                        message: "Please enter only numbers",
+                        message: "გთხოვთ ჩაწეროთ მხოლოდ ციფრები",
                       },
                     }}
                   />
@@ -142,6 +142,9 @@ const CovidCondition = () => {
                     name="covid_sickness_date"
                     type="date"
                     placeholder="დდ/თთ/წწ"
+                    registerOptions={{
+                      required: "ამ ველის შევსება სავალდებულოა",
+                    }}
                   />
                 </div>
               )}
